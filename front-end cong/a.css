@@ -1,0 +1,155 @@
+.wrapper {
+    width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.shop {
+    display: flex;
+    justify-content:space-around;
+
+}
+
+.order-content {
+    /* border: 2px solid black; */
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.order-top {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid rgb(200, 194, 194);
+}
+
+.shopname {
+    margin-left: 10px;
+}
+
+.order-center {
+    border-bottom: 1px solid rgb(200, 194, 194);
+    padding: 10px 0px;
+
+}
+
+.product-order {
+    display: flex;
+    justify-content: space-between;
+    /* padding: 10px 0px; */
+}
+
+.order-center-left {
+    display: flex;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+a:hover {
+    color: red;
+}
+
+.order-bottom {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0px;
+}
+
+.order-bottom-left {
+    /* display: flex; */
+    /* margin: 10px 0px 0px  10px; */
+    margin-left: 20px;
+
+}
+
+.btn {
+    margin-right: 10px;
+}
+
+.info-product {
+    margin-left: 10px;
+    display: flex;
+}
+.amount-product{
+     margin-left: 10px;
+}
+.menu-order {
+    margin-top: 20px;
+    /* width: 1100px; */
+}
+
+.menu-order ul li {
+    
+    display: inline;
+    margin-right: 20px;
+    padding: 10px;
+    /* display: flex; */
+    justify-content:space-between;
+    
+}
+
+.active {
+    color: red;
+}
+.list-order-info {
+    border: 2px solid black;
+}
+.list-order .list-order-info .order-content:hover {
+    background-color: blanchedalmond;
+    
+    
+}
+
+.input-search {
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    width: 800px;
+    background-color: rgba(231, 231, 231, 0.782);
+}
+
+.order-list-top{
+    display: flex;
+    justify-content:space-between;
+    border: 1px black; 
+    background-color: #eead8244;
+}
+.order-list-top-title {
+    border: 1px black;
+}
+.info-product-item{
+    display: flex;
+    justify-content: space-between;
+}
+
+.list-order-count-donhang{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: larger;
+    font-weight: 700;
+}
+.search-order{
+    display: flex;
+    justify-self:center;
+    
+}
+.title1 {
+    flex:3;
+}
+.title2{
+    flex:1;
+}
+.order-status p { 
+    margin-right: 30px;
+}
+.order-center-right a {
+    margin-left: 3px;
+}
+.nguoi-dung {
+    display: flex;
+    justify-content: end;
+}
+.order-bottom{
+    display: flex;
+    justify-self: end;
+}
