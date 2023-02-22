@@ -220,6 +220,7 @@ class OrderManagementController extends Controller
         $response = file_get_contents($url);
         $cart = json_decode($response, true); // lay duoc du lieu nhe
 
+        $orderId = DB::table('orders')->count();
 
         $userData = null;
         $url = 'https://api-admin-dype.onrender.com/api/user';
@@ -234,7 +235,8 @@ class OrderManagementController extends Controller
 
         return view('orders.formCreateOrder', [
             'user' => $userData,
-            'cart' => $cart
+            'cart' => $cart,
+            'orderId' => $orderId
         ]);
     }
 

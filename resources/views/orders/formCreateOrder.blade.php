@@ -140,8 +140,8 @@
                         <div class="delivery-content-left-thongtinkhachhang">
                             Thông tin khách hàng
                         </div>
-                        <div class="delivery-content-left-login">
-                            <p>UserId: {{$user['id']}}</p>
+                        <div class="delivery-content-left-login" id = "userId" value = "{{$user['id']}}">
+                            <p >UserId:  {{$user['id']}}</p>
                         </div>
                     </div>
                     <div class="delivery-content-left-email">
@@ -295,6 +295,10 @@
                                                     var totalshippingfee = document.getElementById("totalshippingfee");
                                                     totalshippingfee.innerHTML = `${result.data.data.totalFee}`;
 
+                                                    var tongtienhang = document.getElementById("tongtienhang");
+                                                    var tongtiensp = document.getElementById("tongtiensp").getAttribute('value');
+                                                    tongtienhang.innerHTML = `Tổng tiền hàng:          ${parseInt(result.data.data.totalFee) + parseInt(tongtiensp)} `;
+
                                                 });
 
                                             }
@@ -340,11 +344,55 @@
                             var productOrders = document.querySelectorAll(".order-center");
                             var divPaymentMethod = document.querySelector('#paymentmethod');
                             // console.log(divPaymentMethod);
-                            var paymentMethod = divPaymentMethod.querySelector('input[type="radio"]:checked');
-                            var userId =
-                            // console.log(paymentMethod.value);
-                            // var paymentMethod = document.
+                            var paymentMethod = divPaymentMethod.querySelector('input[type="radio"]:checked').getAttribute('value');
+                            var userId = document.querySelector('#userId').getAttribute('value');
+                            // console.log(userId);
+                            // console.log(paymentMethod);
                             // console.log(productOrders);
+                            var shippingfee = document.getElementById("totalshippingfee");
+                            console.log(shippingfee.textContent);
+                            for(var i=0;i<productOrders.length;i++){
+                                var orderId = productOrders[i].getAttribute('orderId');
+                                var productid = productOrders[i].getAttribute('productid');
+                                var productname = productOrders[i].getAttribute('productname');
+                                var productstatus = productOrders[i].getAttribute('productstatus');
+                                var price = productOrders[i].getAttribute('price');
+                                var quantity = productOrders[i].getAttribute('quantity');
+                                var img = productOrders[i].getAttribute('img');
+                                var size = productOrders[i].getAttribute('size');
+                                var color = productOrders[i].getAttribute('color');
+
+                                var Parameter = {
+                                                    url: "http://127.0.0.1:8000/api/save-order",
+                                                    method: "POST",
+                                                    data: {
+                                                        orderId : orderId,
+                                                        productid : productid,
+                                                        productname : productname,
+                                                        productstatus : productstatus,
+                                                        price : price,
+                                                        quantity : quantity,
+                                                        img : img,
+                                                        size : size,
+                                                        color : color,
+                                                        status : "chờ xác nhận",
+                                                        ship_price: shippingfee,
+                                                        DistrictID: "D03",
+                                                        ProvinceID: "P12",
+                                                        WardCode: "W11",
+                                                        detailAddress: "cau giay",
+                                                        comment : "oke",
+                                                        rate : "4",
+                                                        userId : "3"
+                                                    },
+                                                    responseType: "application/json",
+                                                };
+                                                var promise = axios(Parameter);
+                                                promise.then(function(result) {
+                                                    console.log(result.data);
+
+                                                });
+                            }
 
                         });
                     </script>
@@ -355,10 +403,20 @@
                                     <div class="delivery-content-right">
                                     <h4 style="text-align: center;">Danh sách sản phẩm</h4>';
                 foreach ($cart['data'] as $product) {
-                    print '<div class="order-center">
+                    print '<div class="order-center" productId = "' . $product['id'] . '"
+                    productName = "' . $product['name'] .'"
+                    productStatus = "' . $product['status'] .'"
+                    price = "' . $product['price'] .'"
+                    quantity = "' . $product['quanty'] .'"
+                    img = "' . $product['image_url'] .'"
+                    size = "' . $product['size'] .'"
+                    color = "' . $product['color'] .'"
+                    userId = "' . $product['id_user'] .'"
+                    orderId = "' . $orderId .'"
+                    >
                                         <div class="product-order">
                                             <div class="order-center-left">
-                                                <div class="img-product">
+                                                <div class="img-product" >
                                                     <a href="#"><img src="' .
                         $product['image_url'] .
                         '" alt="" width="60px"
@@ -366,15 +424,15 @@
                                                 </div>
                                                 <div class="info-product">
                                                     <div>
-                                                        <div class="name-product">
+                                                        <div class="name-product" value = "' .$product['name'] . '" >
                                                             <a href="#">
                                                                 <p>' .
                         $product['name'] .
                         '</p>
                                                             </a>
                                                         </div>
-                                                        <div class="amount-product">
-                                                            <p>x ' .
+                                                        <div class="amount-product" value = "'. $product['quanty'] . '">
+                                                            <p>x' .
                         $product['quanty'] .
                         '</p>
                                                         </div>
@@ -396,7 +454,7 @@
                 print '<div class="order-bottom">
                                         <div class="flex ">
                                             <div>Tổng các mục :</div>
-                                            <div>' .
+                                            <div id="tongtiensp" value = "' .$cart['totalPrice']. '">' .
                     $cart['totalPrice'] .
                     '</div>
                                         </div>
@@ -406,8 +464,8 @@
                                         </div>
                                     </div>
                                     <div class="total-money flex">
-                                        <div>Tổng tiền hàng : </div>
-                                        <div>230.000đ</div>
+                                        <div id = "tongtienhang">Tổng tiền hàng : </div>
+                                        <div></div>
                                     </div>              </div>
                                     ';
                 ?>
