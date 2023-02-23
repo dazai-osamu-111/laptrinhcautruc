@@ -279,7 +279,7 @@ a:hover {
                             print('
                         <div class="order-bottom">
                             <div class="order-bottom-left" style="display: inline-flex">
-                                <div><a href="https://sp07-customerservice.web.app/home/order-detail?orderId=21&fbclid=IwAR1Su2lR4AwqWaFY7WEuIGzRZ7AhKjRnkvhRfFgZjyuuKIBrVuaTFVdsrRo" class="btn btn-success">Đánh giá </a></div>
+                                <div><a href="https://customer-service-60a44.web.app/home/order-detail?orderId=' . $order['orderId']. '" class="btn btn-success">Đánh giá </a></div>
 
                             </div>
                             <div class="order-bottom-right">

@@ -298,6 +298,8 @@
                                                     var tongtienhang = document.getElementById("tongtienhang");
                                                     var tongtiensp = document.getElementById("tongtiensp").getAttribute('value');
                                                     tongtienhang.innerHTML = `Tổng tiền hàng:          ${parseInt(result.data.data.totalFee) + parseInt(tongtiensp)} `;
+                                                    var sum = parseInt(result.data.data.totalFee) + parseInt(tongtiensp);
+                                                    tongtienhang.setAttribute("value", sum);
 
                                                 });
 
@@ -349,6 +351,7 @@
                             // console.log(userId);
                             // console.log(paymentMethod);
                             // console.log(productOrders);
+
                             var shippingfee = document.getElementById("totalshippingfee");
                             console.log(shippingfee.textContent);
                             for(var i=0;i<productOrders.length;i++){
@@ -361,15 +364,16 @@
                                 var img = productOrders[i].getAttribute('img');
                                 var size = productOrders[i].getAttribute('size');
                                 var color = productOrders[i].getAttribute('color');
-
+                                var tongtienhang = document.getElementById("#tongtienhang").getAttribute("value");
+                                console.log(tongtienhang);
                                 var Parameter = {
-                                                    url: "http://127.0.0.1:8000/api/save-order",
+                                                    url: "https://tungsnk.tech:8888/api/save-order",
                                                     method: "POST",
                                                     data: {
                                                         orderId : orderId,
-                                                        productid : productid,
-                                                        productname : productname,
-                                                        productstatus : productstatus,
+                                                        productId : productid,
+                                                        productName : productname,
+                                                        productStatus : productstatus,
                                                         price : price,
                                                         quantity : quantity,
                                                         img : img,
@@ -377,6 +381,7 @@
                                                         color : color,
                                                         status : "chờ xác nhận",
                                                         ship_price: shippingfee,
+                                                        total_price: tongtienhang,
                                                         DistrictID: "D03",
                                                         ProvinceID: "P12",
                                                         WardCode: "W11",
